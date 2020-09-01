@@ -1,27 +1,49 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({
+  settings: {postgresql: {table: 'department'}},
+})
 export class Department extends Entity {
   @property({
     type: 'number',
     id: true,
     generated: true,
+    postgresql: {
+      columnName: 'country',
+      dataType: 'number',
+      nullable: 'NO',
+    },
   })
-  id?: number;
+  id: number;
 
   @property({
     type: 'string',
     required: true,
+    postgresql: {
+      columnName: 'name',
+      dataType: 'string',
+      nullable: 'NO',
+    },
   })
   name: string;
 
   @property({
     type: 'number',
+    postgresql: {
+      columnName: 'manager',
+      dataType: 'number',
+      nullable: 'YES',
+    },
   })
   manager?: number;
 
   @property({
     type: 'number',
+    postgresql: {
+      columnName: 'location',
+      dataType: 'number',
+      nullable: 'YES',
+    },
   })
   location?: number;
 
