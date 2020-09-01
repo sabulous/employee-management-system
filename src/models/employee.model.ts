@@ -14,7 +14,7 @@ export class Employee extends Entity {
       nullable: 'NO',
     },
   })
-  id: number;
+  id?: number;
 
   @property({
     type: 'string',

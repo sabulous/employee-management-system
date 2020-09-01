@@ -14,7 +14,7 @@ export class Department extends Entity {
       nullable: 'NO',
     },
   })
-  id: number;
+  id?: number;
 
   @property({
     type: 'string',

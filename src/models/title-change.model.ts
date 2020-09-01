@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model({
-  settings: {postgresql: {table: 'title-change'}, strict: false},
+  settings: {postgresql: {table: 'title-change'}},
 })
 export class TitleChange extends Entity {
   @property({

@@ -14,7 +14,7 @@ export class Location extends Model {
       nullable: 'NO',
     },
   })
-  id: number;
+  id?: number;
 
   @property({
     type: 'string',
