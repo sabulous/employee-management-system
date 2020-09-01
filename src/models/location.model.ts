@@ -1,9 +1,9 @@
-import {Model, model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model({
   settings: {postgresql: {table: 'location'}},
 })
-export class Location extends Model {
+export class Location extends Entity {
   @property({
     type: 'number',
     id: true,
