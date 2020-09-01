@@ -1,4 +1,7 @@
-import {ApplicationConfig, EmployeeManagementSystemApplication} from './application';
+import {
+  ApplicationConfig,
+  EmployeeManagementSystemApplication,
+} from './application';
 
 export * from './application';
 
