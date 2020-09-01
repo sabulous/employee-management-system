@@ -1,1 +1,1 @@
-export * from './postgre-ds.datasource';
+export * from './postgres-db.datasource';
