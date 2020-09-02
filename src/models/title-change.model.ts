@@ -32,7 +32,7 @@ export class TitleChange extends Entity {
     type: 'string',
     required: true,
   })
-  department: string;
+  departmentId: string;
 
   // Define well-known properties here
 

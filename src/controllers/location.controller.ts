@@ -7,13 +7,13 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
 } from '@loopback/rest';
 import {Location} from '../models';
@@ -22,7 +22,7 @@ import {LocationRepository} from '../repositories';
 export class LocationController {
   constructor(
     @repository(LocationRepository)
-    public locationRepository : LocationRepository,
+    public locationRepository: LocationRepository,
   ) {}
 
   @post('/locations', {
@@ -39,7 +39,7 @@ export class LocationController {
         'application/json': {
           schema: getModelSchemaRef(Location, {
             title: 'NewLocation',
-            
+            exclude: ['id'],
           }),
         },
       },
@@ -57,9 +57,7 @@ export class LocationController {
       },
     },
   })
-  async count(
-    @param.where(Location) where?: Where<Location>,
-  ): Promise<Count> {
+  async count(@param.where(Location) where?: Where<Location>): Promise<Count> {
     return this.locationRepository.count(where);
   }
 
@@ -120,7 +118,8 @@ export class LocationController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Location, {exclude: 'where'}) filter?: FilterExcludingWhere<Location>
+    @param.filter(Location, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Location>,
   ): Promise<Location> {
     return this.locationRepository.findById(id, filter);
   }

@@ -18,12 +18,12 @@ export class Department extends Entity {
   @property({
     type: 'number',
   })
-  manager?: number;
+  managerId?: number;
 
   @property({
     type: 'number',
   })
-  location?: number;
+  locationId?: number;
 
   // Define well-known properties here
 
