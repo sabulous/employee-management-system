@@ -1,7 +1,7 @@
-import {DefaultCrudRepository} from '@loopback/repository';
-import {Employee, EmployeeRelations} from '../models';
-import {PostgresDbDataSource} from '../datasources';
 import {inject} from '@loopback/core';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {PostgresDbDataSource} from '../datasources';
+import {Employee, EmployeeRelations} from '../models';
 
 export class EmployeeRepository extends DefaultCrudRepository<
   Employee,

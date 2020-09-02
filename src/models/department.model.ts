@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Employee} from './employee.model';
 
 @model({settings: {postgresql: {table: 'department'}}})
 export class Department extends Entity {
@@ -18,14 +19,17 @@ export class Department extends Entity {
   @property({
     type: 'number',
   })
-  managerId?: number;
+  locationId?: number;
 
   @property({
     type: 'number',
   })
-  locationId?: number;
+  managerId?: 'number';
 
   // Define well-known properties here
+
+  @hasMany(() => Employee, {keyTo: 'departmentId'})
+  employees?: Employee[];
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

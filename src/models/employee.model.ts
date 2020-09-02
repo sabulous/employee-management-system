@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {Department, DepartmentWithRelations} from './department.model';
 
 @model({
   settings: {postgresql: {table: 'employee'}},
@@ -57,10 +58,8 @@ export class Employee extends Entity {
   })
   managerId?: number;
 
-  @property({
-    type: 'number',
-  })
-  departmentId?: number;
+  @belongsTo(() => Department)
+  departmentId: number;
 
   constructor(data?: Partial<Employee>) {
     super(data);
@@ -68,7 +67,7 @@ export class Employee extends Entity {
 }
 
 export interface EmployeeRelations {
-  // describe navigational properties here
+  department?: DepartmentWithRelations;
 }
 
 export type EmployeeWithRelations = Employee & EmployeeRelations;
