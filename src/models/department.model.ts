@@ -1,51 +1,35 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({
-  settings: {postgresql: {table: 'department'}},
-})
+@model({settings: {postgresql: {table: 'department'}}})
 export class Department extends Entity {
   @property({
     type: 'number',
     id: true,
     generated: true,
-    postgresql: {
-      columnName: 'country',
-      dataType: 'number',
-      nullable: 'NO',
-    },
   })
   id?: number;
 
   @property({
     type: 'string',
     required: true,
-    postgresql: {
-      columnName: 'name',
-      dataType: 'string',
-      nullable: 'NO',
-    },
   })
   name: string;
 
   @property({
     type: 'number',
-    postgresql: {
-      columnName: 'manager',
-      dataType: 'number',
-      nullable: 'YES',
-    },
   })
   manager?: number;
 
   @property({
     type: 'number',
-    postgresql: {
-      columnName: 'location',
-      dataType: 'number',
-      nullable: 'YES',
-    },
   })
   location?: number;
+
+  // Define well-known properties here
+
+  // Indexer property to allow additional data
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
 
   constructor(data?: Partial<Department>) {
     super(data);

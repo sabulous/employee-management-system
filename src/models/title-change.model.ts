@@ -8,54 +8,29 @@ export class TitleChange extends Entity {
     type: 'number',
     id: true,
     generated: true,
-    postgresql: {
-      columnName: 'id',
-      dataType: 'number',
-      nullable: 'NO',
-    },
   })
   id?: number;
 
   @property({
     type: 'date',
     required: true,
-    postgresql: {
-      columnName: 'start_date',
-      dataType: 'string',
-      nullable: 'NO',
-    },
   })
   startDate: string;
 
   @property({
     type: 'string',
-    postgresql: {
-      columnName: 'end_date',
-      dataType: 'string',
-      nullable: 'YES',
-    },
   })
   endDate?: string;
 
   @property({
     type: 'string',
     required: true,
-    postgresql: {
-      columnName: 'title',
-      dataType: 'string',
-      nullable: 'NO',
-    },
   })
   title: string;
 
   @property({
     type: 'string',
     required: true,
-    postgresql: {
-      columnName: 'department',
-      dataType: 'string',
-      nullable: 'NO',
-    },
   })
   department: string;
 

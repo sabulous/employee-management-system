@@ -7,13 +7,13 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
 } from '@loopback/rest';
 import {TitleChange} from '../models';
@@ -22,7 +22,7 @@ import {TitleChangeRepository} from '../repositories';
 export class TitleChangeController {
   constructor(
     @repository(TitleChangeRepository)
-    public titleChangeRepository : TitleChangeRepository,
+    public titleChangeRepository: TitleChangeRepository,
   ) {}
 
   @post('/title-changes', {
@@ -39,7 +39,7 @@ export class TitleChangeController {
         'application/json': {
           schema: getModelSchemaRef(TitleChange, {
             title: 'NewTitleChange',
-            
+            exclude: ['id'],
           }),
         },
       },
@@ -120,7 +120,8 @@ export class TitleChangeController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(TitleChange, {exclude: 'where'}) filter?: FilterExcludingWhere<TitleChange>
+    @param.filter(TitleChange, {exclude: 'where'})
+    filter?: FilterExcludingWhere<TitleChange>,
   ): Promise<TitleChange> {
     return this.titleChangeRepository.findById(id, filter);
   }

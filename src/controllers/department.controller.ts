@@ -39,12 +39,12 @@ export class DepartmentController {
         'application/json': {
           schema: getModelSchemaRef(Department, {
             title: 'NewDepartment',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    department: Department,
+    department: Omit<Department, 'id'>,
   ): Promise<Department> {
     return this.departmentRepository.create(department);
   }
