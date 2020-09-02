@@ -12,6 +12,12 @@ export class TitleChange extends Entity {
   id?: number;
 
   @property({
+    type: 'number',
+    required: true,
+  })
+  employeeid: number;
+
+  @property({
     type: 'date',
     required: true,
   })
