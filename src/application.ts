@@ -9,8 +9,8 @@ import {
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {EmployeeRepository} from './repositories';
-import {MySequence} from './sequence';
-import {ManagerService} from './services';
+import {ManagerService, SalaryService} from './services';
+import {DepartmentService} from './services/department.service';
 
 export {ApplicationConfig};
 
@@ -20,8 +20,8 @@ export class EmployeeManagementSystemApplication extends BootMixin(
   constructor(options: ApplicationConfig = {}) {
     super(options);
 
-    // Set up the custom sequence
-    this.sequence(MySequence);
+    // // Set up the custom sequence
+    // this.sequence(MySequence);
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
@@ -50,6 +50,12 @@ export class EmployeeManagementSystemApplication extends BootMixin(
     @inject decorator.
     */
     this.bind('manager.service').toClass(ManagerService);
+    this.bind('department.service').toClass(DepartmentService);
+    this.bind('salary.service').toClass(SalaryService);
+
     this.bind('employee.repository').toClass(EmployeeRepository);
+
+    // register logger as middleware. it does break swagger somehow though.
+    // this.middleware(log);
   }
 }

@@ -1,5 +1,5 @@
 import {inject} from '@loopback/core';
-import {Filter, FilterBuilder, repository} from '@loopback/repository';
+import {Filter, repository} from '@loopback/repository';
 import {get, getModelSchemaRef, param} from '@loopback/rest';
 import {Employee} from '../models';
 import {EmployeeRepository} from '../repositories';
@@ -40,8 +40,7 @@ export class ManagerController {
       '200': {
         description: 'Array of Managers with Employees',
         content: {
-          'application/json': {
-          },
+          'application/json': {},
         },
       },
     },
@@ -49,5 +48,4 @@ export class ManagerController {
   async listEmployeesByManagers() {
     return await this.managerService.getHierarchy();
   }
-
 }

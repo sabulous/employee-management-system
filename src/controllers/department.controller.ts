@@ -1,3 +1,4 @@
+import {inject} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -7,22 +8,25 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
 } from '@loopback/rest';
 import {Department} from '../models';
 import {DepartmentRepository} from '../repositories';
+import {SalaryService} from '../services';
 
 export class DepartmentController {
   constructor(
     @repository(DepartmentRepository)
-    public departmentRepository : DepartmentRepository,
+    public departmentRepository: DepartmentRepository,
+    @inject('salary.service')
+    private salaryService: SalaryService,
   ) {}
 
   @post('/departments', {
@@ -61,6 +65,18 @@ export class DepartmentController {
     @param.where(Department) where?: Where<Department>,
   ): Promise<Count> {
     return this.departmentRepository.count(where);
+  }
+
+  @get('/departments/{id}/averageSalary', {
+    responses: {
+      '200': {
+        description: 'Department model count',
+        content: {'application/json': {}},
+      },
+    },
+  })
+  async averageSalary(@param.path.number('id') id: number): Promise<number> {
+    return await this.salaryService.getAverageSalaryByDepartment(id);
   }
 
   @get('/departments', {
@@ -120,7 +136,8 @@ export class DepartmentController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Department, {exclude: 'where'}) filter?: FilterExcludingWhere<Department>
+    @param.filter(Department, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Department>,
   ): Promise<Department> {
     return this.departmentRepository.findById(id, filter);
   }
