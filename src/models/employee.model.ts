@@ -53,10 +53,8 @@ export class Employee extends Entity {
   })
   title: string;
 
-  @property({
-    type: 'number',
-  })
-  managerId?: number;
+  @belongsTo(() => Employee, {name: 'manager'})
+  managerId: number;
 
   @belongsTo(() => Department)
   departmentId: number;
