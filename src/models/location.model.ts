@@ -9,7 +9,7 @@ export class Location extends Entity {
     id: true,
     generated: true,
   })
-  id?: number;
+  id: number;
 
   @property({
     type: 'string',
