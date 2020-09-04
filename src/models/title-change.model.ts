@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {Employee, EmployeeWithRelations} from './employee.model';
 
 @model({
   settings: {postgresql: {table: 'title-change'}},
@@ -12,19 +13,13 @@ export class TitleChange extends Entity {
   id: number;
 
   @property({
-    type: 'number',
-    required: true,
-  })
-  employeeid: number;
-
-  @property({
     type: 'date',
     required: true,
   })
   startDate: string;
 
   @property({
-    type: 'string',
+    type: 'date',
   })
   endDate?: string;
 
@@ -35,12 +30,12 @@ export class TitleChange extends Entity {
   title: string;
 
   @property({
-    type: 'string',
-    required: true,
+    type: 'number',
   })
-  departmentId: string;
+  departmentId: number;
 
-  // Define well-known properties here
+  @belongsTo(() => Employee, {name: 'employee'})
+  employeeId: number;
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +47,7 @@ export class TitleChange extends Entity {
 }
 
 export interface TitleChangeRelations {
-  // describe navigational properties here
+  employee?: EmployeeWithRelations;
 }
 
 export type TitleChangeWithRelations = TitleChange & TitleChangeRelations;
