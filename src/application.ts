@@ -8,10 +8,11 @@ import {
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
-import {EmployeeRepository} from './repositories';
+import {EmployeeRepository, TitleChangeRepository} from './repositories';
 import {MySequence} from './sequence';
 import {ManagerService, SalaryService} from './services';
 import {DepartmentService} from './services/department.service';
+import {EmployeeService} from './services/employee.service';
 
 export {ApplicationConfig};
 
@@ -52,11 +53,13 @@ export class EmployeeManagementSystemApplication extends BootMixin(
     */
 
     // service bindings
+    this.bind('employee.service').toClass(EmployeeService);
     this.bind('manager.service').toClass(ManagerService);
     this.bind('department.service').toClass(DepartmentService);
     this.bind('salary.service').toClass(SalaryService);
 
     // repository bindings
     this.bind('employee.repository').toClass(EmployeeRepository);
+    this.bind('title-change.repository').toClass(TitleChangeRepository);
   }
 }

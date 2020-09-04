@@ -1,3 +1,4 @@
+import {inject} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -18,11 +19,13 @@ import {
 } from '@loopback/rest';
 import {Employee} from '../models';
 import {EmployeeRepository} from '../repositories';
+import {EmployeeService} from '../services';
 
 export class EmployeeController {
   constructor(
     @repository(EmployeeRepository)
     public employeeRepository: EmployeeRepository,
+    @inject('employee.service') private employeeService: EmployeeService,
   ) {}
 
   @post('/employees', {
@@ -102,6 +105,26 @@ export class EmployeeController {
     @param.where(Employee) where?: Where<Employee>,
   ): Promise<Count> {
     return this.employeeRepository.updateAll(employee, where);
+  }
+
+  @get('/employees/{id}/history', {
+    responses: {
+      '200': {
+        description: 'Employee model instance',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Employee, {includeRelations: true}),
+          },
+        },
+      },
+    },
+  })
+  async getTitleChangesByEmployeeId(
+    @param.path.number('id') id: number,
+    @param.filter(Employee, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Employee>,
+  ): Promise<any> {
+    return this.employeeService.getTitleChangesByEmployeeId(id);
   }
 
   @get('/employees/{id}', {
