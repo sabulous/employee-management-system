@@ -56,7 +56,7 @@ export class Employee extends Entity {
   @belongsTo(() => Employee, {name: 'manager'})
   managerId: number;
 
-  @belongsTo(() => Department)
+  @belongsTo(() => Department, {name: 'department'})
   departmentId: number;
 
   constructor(data?: Partial<Employee>) {
@@ -65,6 +65,7 @@ export class Employee extends Entity {
 }
 
 export interface EmployeeRelations {
+  manager?: EmployeeWithRelations;
   department?: DepartmentWithRelations;
 }
 
