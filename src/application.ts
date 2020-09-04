@@ -55,7 +55,5 @@ export class EmployeeManagementSystemApplication extends BootMixin(
 
     this.bind('employee.repository').toClass(EmployeeRepository);
 
-    // register logger as middleware. it does break swagger somehow though.
-    // this.middleware(log);
   }
 }
