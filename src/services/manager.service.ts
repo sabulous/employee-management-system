@@ -29,8 +29,6 @@ export class ManagerService {
       .where({managerId: managerId})
       .build();
 
-    console.log(this.employeeRepository.find(filter));
-
     return await this.employeeRepository.find(filter);
   }
 
@@ -41,7 +39,6 @@ export class ManagerService {
     }));
     let hierarchy = [];
     for (let m of managers) {
-      console.log('SERVICE manager id:', m);
       let employees = (await this.getEmployeesByManagerId(m.managerId)).map(
         e => ({
           name: e.name,
