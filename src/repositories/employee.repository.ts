@@ -25,23 +25,25 @@ export class EmployeeRepository extends DefaultCrudRepository<
   constructor(
     @inject('datasources.postgresDb') dataSource: PostgresDbDataSource,
 
-    @repository.getter('EmployeeRepository')
-    managerRepositoryGetter: Getter<EmployeeRepository>,
-
     @repository.getter('DepartmentRepository')
     departmentRepositoryGetter: Getter<DepartmentRepository>,
   ) {
     super(Employee, dataSource);
 
-    this.managerId = this.createBelongsToAccessorFor(
+    // To break circular dependency, Getter.fromValue(this) is used.
+    this.managerId = this._createBelongsToAccessorFor(
       'manager',
-      managerRepositoryGetter,
+      Getter.fromValue(this),
     );
+    this.registerInclusionResolver('manager', this.managerId.inclusionResolver);
 
     this.departmentId = this.createBelongsToAccessorFor(
       'department',
       departmentRepositoryGetter,
     );
-    this.registerInclusionResolver('department', this.departmentId.inclusionResolver);
+    this.registerInclusionResolver(
+      'department',
+      this.departmentId.inclusionResolver,
+    );
   }
 }
