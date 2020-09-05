@@ -46,6 +46,7 @@ export class LocationController {
     })
     location: Location,
   ): Promise<Location> {
+    console.log('POST /locations');
     return this.locationRepository.create(location);
   }
 
@@ -58,6 +59,7 @@ export class LocationController {
     },
   })
   async count(@param.where(Location) where?: Where<Location>): Promise<Count> {
+    console.log('GET /locations/count');
     return this.locationRepository.count(where);
   }
 
@@ -79,6 +81,7 @@ export class LocationController {
   async find(
     @param.filter(Location) filter?: Filter<Location>,
   ): Promise<Location[]> {
+    console.log('GET /locations');
     return this.locationRepository.find(filter);
   }
 
@@ -101,6 +104,7 @@ export class LocationController {
     location: Location,
     @param.where(Location) where?: Where<Location>,
   ): Promise<Count> {
+    console.log('PATCH /locations');
     return this.locationRepository.updateAll(location, where);
   }
 
@@ -121,6 +125,7 @@ export class LocationController {
     @param.filter(Location, {exclude: 'where'})
     filter?: FilterExcludingWhere<Location>,
   ): Promise<Location> {
+    console.log(`GET /locations/${id}`);
     return this.locationRepository.findById(id, filter);
   }
 
@@ -142,6 +147,7 @@ export class LocationController {
     })
     location: Location,
   ): Promise<void> {
+    console.log(`PATCH /locations/${id}`);
     await this.locationRepository.updateById(id, location);
   }
 
@@ -156,6 +162,7 @@ export class LocationController {
     @param.path.number('id') id: number,
     @requestBody() location: Location,
   ): Promise<void> {
+    console.log(`PUT /locations/${id}`);
     await this.locationRepository.replaceById(id, location);
   }
 
@@ -167,6 +174,7 @@ export class LocationController {
     },
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
+    console.log(`DELETE /locations/${id}`);
     await this.locationRepository.deleteById(id);
   }
 }

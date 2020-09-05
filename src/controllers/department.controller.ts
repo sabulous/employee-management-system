@@ -50,6 +50,7 @@ export class DepartmentController {
     })
     department: Omit<Department, 'id'>,
   ): Promise<Department> {
+    console.log('POST /departments');
     return this.departmentRepository.create(department);
   }
 
@@ -64,6 +65,7 @@ export class DepartmentController {
   async count(
     @param.where(Department) where?: Where<Department>,
   ): Promise<Count> {
+    console.log('GET /departments/count');
     return this.departmentRepository.count(where);
   }
 
@@ -76,6 +78,7 @@ export class DepartmentController {
     },
   })
   async averageSalary(@param.path.number('id') id: number): Promise<number> {
+    console.log(`GET /departments/${id}/averageSalary`);
     return await this.salaryService.getAverageSalaryByDepartment(id);
   }
 
@@ -97,6 +100,7 @@ export class DepartmentController {
   async find(
     @param.filter(Department) filter?: Filter<Department>,
   ): Promise<Department[]> {
+    console.log('GET /departments');
     return this.departmentRepository.find(filter);
   }
 
@@ -119,6 +123,7 @@ export class DepartmentController {
     department: Department,
     @param.where(Department) where?: Where<Department>,
   ): Promise<Count> {
+    console.log('PATCH /departments');
     return this.departmentRepository.updateAll(department, where);
   }
 
@@ -139,6 +144,7 @@ export class DepartmentController {
     @param.filter(Department, {exclude: 'where'})
     filter?: FilterExcludingWhere<Department>,
   ): Promise<Department> {
+    console.log(`GET /departments/${id}`);
     return this.departmentRepository.findById(id, filter);
   }
 
@@ -160,6 +166,7 @@ export class DepartmentController {
     })
     department: Department,
   ): Promise<void> {
+    console.log(`PATCH /departments/${id}`);
     await this.departmentRepository.updateById(id, department);
   }
 
@@ -174,6 +181,7 @@ export class DepartmentController {
     @param.path.number('id') id: number,
     @requestBody() department: Department,
   ): Promise<void> {
+    console.log(`PUT /departments/${id}`);
     await this.departmentRepository.replaceById(id, department);
   }
 
@@ -185,6 +193,7 @@ export class DepartmentController {
     },
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
+    console.log(`DELETE /departments/${id}`);
     await this.departmentRepository.deleteById(id);
   }
 }

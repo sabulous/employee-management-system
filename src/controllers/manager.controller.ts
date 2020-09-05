@@ -30,6 +30,7 @@ export class ManagerController {
   async find(
     @param.filter(Employee) filter?: Filter<Employee>,
   ): Promise<Employee[]> {
+    console.log('GET /managers');
     return (await this.employeeRepository.find(filter)).filter(
       emp => emp.title === 'Manager',
     );
@@ -46,6 +47,7 @@ export class ManagerController {
     },
   })
   async listEmployeesByManagers() {
+    console.log('GET /hierarchy');
     return await this.managerService.getHierarchy();
   }
 }

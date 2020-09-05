@@ -46,6 +46,7 @@ export class TitleChangeController {
     })
     titleChange: TitleChange,
   ): Promise<TitleChange> {
+    console.log(`POST /title-changes`);
     return this.titleChangeRepository.create(titleChange);
   }
 
@@ -60,6 +61,7 @@ export class TitleChangeController {
   async count(
     @param.where(TitleChange) where?: Where<TitleChange>,
   ): Promise<Count> {
+    console.log('GET /title-changes/count');
     return this.titleChangeRepository.count(where);
   }
 
@@ -81,6 +83,7 @@ export class TitleChangeController {
   async find(
     @param.filter(TitleChange) filter?: Filter<TitleChange>,
   ): Promise<TitleChange[]> {
+    console.log('GET /title-changes');
     return this.titleChangeRepository.find(filter);
   }
 
@@ -103,6 +106,7 @@ export class TitleChangeController {
     titleChange: TitleChange,
     @param.where(TitleChange) where?: Where<TitleChange>,
   ): Promise<Count> {
+    console.log('PATCH /title-changes');
     return this.titleChangeRepository.updateAll(titleChange, where);
   }
 
@@ -123,6 +127,7 @@ export class TitleChangeController {
     @param.filter(TitleChange, {exclude: 'where'})
     filter?: FilterExcludingWhere<TitleChange>,
   ): Promise<TitleChange> {
+    console.log(`GET /title-changes/${id}`);
     return this.titleChangeRepository.findById(id, filter);
   }
 
@@ -144,6 +149,7 @@ export class TitleChangeController {
     })
     titleChange: TitleChange,
   ): Promise<void> {
+    console.log(`PATCH /title-changes/${id}`);
     await this.titleChangeRepository.updateById(id, titleChange);
   }
 
@@ -158,6 +164,7 @@ export class TitleChangeController {
     @param.path.number('id') id: number,
     @requestBody() titleChange: TitleChange,
   ): Promise<void> {
+    console.log(`PUT /title-changes/${id}`);
     await this.titleChangeRepository.replaceById(id, titleChange);
   }
 
@@ -169,6 +176,7 @@ export class TitleChangeController {
     },
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
+    console.log(`DELETE /title-changes/${id}`);
     await this.titleChangeRepository.deleteById(id);
   }
 }

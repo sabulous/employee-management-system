@@ -10,7 +10,7 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {EmployeeRepository, TitleChangeRepository} from './repositories';
 import {MySequence} from './sequence';
-import {ManagerService, SalaryService} from './services';
+import {GeolocProvider, ManagerService, SalaryService} from './services';
 import {DepartmentService} from './services/department.service';
 import {EmployeeService} from './services/employee.service';
 
@@ -57,6 +57,7 @@ export class EmployeeManagementSystemApplication extends BootMixin(
     this.bind('manager.service').toClass(ManagerService);
     this.bind('department.service').toClass(DepartmentService);
     this.bind('salary.service').toClass(SalaryService);
+    this.bind('geoloc.service').toProvider(GeolocProvider);
 
     // repository bindings
     this.bind('employee.repository').toClass(EmployeeRepository);

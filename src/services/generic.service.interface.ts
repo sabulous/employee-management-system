@@ -1,5 +1,4 @@
-export interface GenericServiceInterface {
-}
+export interface GenericServiceInterface {}
 
 export interface EmployeeServiceInterface extends GenericServiceInterface {
   getTitleChangesByEmployeeId(employeeId: number): Promise<any>;

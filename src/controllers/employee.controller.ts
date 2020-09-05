@@ -49,6 +49,7 @@ export class EmployeeController {
     })
     employee: Employee,
   ): Promise<Employee> {
+    console.log('POST /employees');
     return this.employeeRepository.create(employee);
   }
 
@@ -61,6 +62,7 @@ export class EmployeeController {
     },
   })
   async count(@param.where(Employee) where?: Where<Employee>): Promise<Count> {
+    console.log('GET /employees/count');
     return this.employeeRepository.count(where);
   }
 
@@ -82,6 +84,7 @@ export class EmployeeController {
   async find(
     @param.filter(Employee) filter?: Filter<Employee>,
   ): Promise<Employee[]> {
+    console.log('GET /employees');
     return this.employeeRepository.find(filter);
   }
 
@@ -104,9 +107,11 @@ export class EmployeeController {
     employee: Employee,
     @param.where(Employee) where?: Where<Employee>,
   ): Promise<Count> {
+    console.log('PATCH /employees');
     return this.employeeRepository.updateAll(employee, where);
   }
 
+  // retrieves employee info with title change history
   @get('/employees/{id}/history', {
     responses: {
       '200': {
@@ -124,6 +129,7 @@ export class EmployeeController {
     @param.filter(Employee, {exclude: 'where'})
     filter?: FilterExcludingWhere<Employee>,
   ): Promise<any> {
+    console.log(`GET /employees/${id}/history`);
     return this.employeeService.getTitleChangesByEmployeeId(id);
   }
 
@@ -144,6 +150,7 @@ export class EmployeeController {
     @param.filter(Employee, {exclude: 'where'})
     filter?: FilterExcludingWhere<Employee>,
   ): Promise<Employee> {
+    console.log(`GET /employees/${id}`);
     return this.employeeRepository.findById(id, filter);
   }
 
@@ -165,6 +172,7 @@ export class EmployeeController {
     })
     employee: Employee,
   ): Promise<void> {
+    console.log(`PATCH /employees/${id}`);
     await this.employeeRepository.updateById(id, employee);
   }
 
@@ -179,6 +187,7 @@ export class EmployeeController {
     @param.path.number('id') id: number,
     @requestBody() employee: Employee,
   ): Promise<void> {
+    console.log(`PUT /employees/${id}`);
     await this.employeeRepository.replaceById(id, employee);
   }
 
@@ -190,6 +199,7 @@ export class EmployeeController {
     },
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
+    console.log(`DELETE /employees/${id}`);
     await this.employeeRepository.deleteById(id);
   }
 }
