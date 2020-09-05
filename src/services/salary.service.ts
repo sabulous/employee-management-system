@@ -1,9 +1,10 @@
 import {bind, BindingScope, inject} from '@loopback/core';
 import {EmployeeRepository} from '../repositories';
 import {DepartmentService} from './department.service';
+import {SalaryServiceInterface} from './generic.service.interface';
 
 @bind({scope: BindingScope.TRANSIENT})
-export class SalaryService {
+export class SalaryService implements SalaryServiceInterface {
   constructor(
     @inject('employee.repository')
     private employeeRepository: EmployeeRepository,
