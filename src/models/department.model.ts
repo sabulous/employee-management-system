@@ -1,6 +1,6 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {Location} from './location.model';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {LocationWithRelations} from '../models';
+import {Location} from './location.model';
 
 @model({settings: {postgresql: {table: 'department'}}})
 export class Department extends Entity {
@@ -23,7 +23,7 @@ export class Department extends Entity {
   managerId?: 'number';
 
   @belongsTo(() => Location)
-  locationId: number
+  locationId: number;
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,7 +35,7 @@ export class Department extends Entity {
 }
 
 export interface DepartmentRelations {
-  location?: LocationWithRelations
+  location?: LocationWithRelations;
 }
 
 export type DepartmentWithRelations = Department & DepartmentRelations;

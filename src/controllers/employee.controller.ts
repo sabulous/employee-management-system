@@ -128,6 +128,7 @@ export class EmployeeController {
     @param.path.number('id') id: number,
     @param.filter(Employee, {exclude: 'where'})
     filter?: FilterExcludingWhere<Employee>,
+    /* eslint-disable-next-line */
   ): Promise<any> {
     console.log(`GET /employees/${id}/history`);
     return this.employeeService.getTitleChangesByEmployeeId(id);

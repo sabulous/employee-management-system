@@ -19,9 +19,10 @@ export class EmployeeService implements EmployeeServiceInterface {
       .where({managerId: employeeId})
       .build();
 
-    const titleChanges = (await this.titleChangeRepository.find(filter)).filter(tc => tc.employeeId === employeeId);
-    const employee = await this.employeeRepository.findById(employeeId)
+    const titleChanges = (await this.titleChangeRepository.find(filter)).filter(
+      tc => tc.employeeId === employeeId,
+    );
+    const employee = await this.employeeRepository.findById(employeeId);
     return {...employee, titleChanges};
   }
-
 }

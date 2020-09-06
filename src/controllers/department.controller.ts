@@ -79,7 +79,7 @@ export class DepartmentController {
   })
   async averageSalary(@param.path.number('id') id: number): Promise<number> {
     console.log(`GET /departments/${id}/averageSalary`);
-    return await this.salaryService.getAverageSalaryByDepartment(id);
+    return this.salaryService.getAverageSalaryByDepartment(id);
   }
 
   @get('/departments', {
@@ -129,12 +129,11 @@ export class DepartmentController {
 
   @get('/departments/{id}', {
     responses: {
+
       '200': {
         description: 'Department model instance',
         content: {
-          'application/json': {
-            schema: getModelSchemaRef(Department, {includeRelations: true}),
-          },
+          'application/json': {},
         },
       },
     },

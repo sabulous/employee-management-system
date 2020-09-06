@@ -6,6 +6,7 @@ export interface GeolocService {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
+  /* eslint-disable-next-line */
   getAddressFromAPI(latitude: string, longitude: string): Promise<any>;
 }
 

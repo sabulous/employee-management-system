@@ -15,7 +15,7 @@ export class SalaryService implements SalaryServiceInterface {
   async getAverageSalaryByDepartment(departmentId: number) {
     return (
       (await this.employeeRepository.find())
-        .filter(emp => emp.departmentId == departmentId)
+        .filter(emp => emp.departmentId === departmentId)
         .map(emp => emp.salary)
         .reduce((a, b) => a + b, 0) /
       (await this.departmentService.getEmployeeCountByDepartment(departmentId))

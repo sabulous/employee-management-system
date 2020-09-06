@@ -13,6 +13,7 @@ export class EmployeeRepository extends DefaultCrudRepository<
   typeof Employee.prototype.id,
   EmployeeRelations
 > {
+  /* eslint-disable-next-line */
   [x: string]: any;
   public readonly managerId: BelongsToAccessor<
     Employee,

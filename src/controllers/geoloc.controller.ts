@@ -12,13 +12,19 @@ export class GeolocController {
   async getAddressFromAPI(
     @param.query.string('latitude') latitude: string,
     @param.query.string('longitude') longitude: string,
+    /* eslint-disable-next-line */
   ): Promise<any> {
-
     console.log('GET /address');
-    const response = await this.geolocService.getAddressFromAPI(latitude, longitude);
+    const response = await this.geolocService.getAddressFromAPI(
+      latitude,
+      longitude,
+    );
 
     let cityName;
-    if(response[0].localityInfo.administrative && response[0].localityInfo.administrative.length > 2) {
+    if (
+      response[0].localityInfo.administrative &&
+      response[0].localityInfo.administrative.length > 2
+    ) {
       cityName = response[0].localityInfo.administrative[2].isoName;
     }
 

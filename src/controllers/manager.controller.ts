@@ -48,6 +48,6 @@ export class ManagerController {
   })
   async listEmployeesByManagers() {
     console.log('GET /hierarchy');
-    return await this.managerService.getHierarchy();
+    return this.managerService.getHierarchy();
   }
 }

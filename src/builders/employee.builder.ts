@@ -60,5 +60,4 @@ export class EmployeeBuilder {
     this.employee.departmentId = departmentId;
     return this;
   }
-
 }

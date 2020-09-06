@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface GenericServiceInterface {}
 
 export interface EmployeeServiceInterface extends GenericServiceInterface {

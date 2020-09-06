@@ -30,17 +30,17 @@ export class ManagerService implements ManagerServiceInterface {
       .where({managerId: managerId})
       .build();
 
-    return await this.employeeRepository.find(filter);
+    return this.employeeRepository.find(filter);
   }
 
   async getHierarchy() {
-    let managers = (await this.getManagers()).map(m => ({
+    const managers = (await this.getManagers()).map(m => ({
       managerId: m.id,
       managerName: m.name,
     }));
-    let hierarchy = [];
-    for (let m of managers) {
-      let employees = (await this.getEmployeesByManagerId(m.managerId)).map(
+    const hierarchy = [];
+    for (const m of managers) {
+      const employees = (await this.getEmployeesByManagerId(m.managerId)).map(
         e => ({
           name: e.name,
         }),
