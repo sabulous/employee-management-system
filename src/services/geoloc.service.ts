@@ -6,10 +6,7 @@ export interface GeolocService {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
-  getAddressFromAPI(
-    lat: string,
-    lon: string,
-  ): Promise<any>;
+  getAddressFromAPI(latitude: string, longitude: string): Promise<any>;
 }
 
 export class GeolocProvider implements Provider<GeolocService> {

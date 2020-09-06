@@ -10,16 +10,23 @@ export class GeolocController {
   // gets latitude and longitude and returns {city, country, postcode, address}
   @get('/address')
   async getAddressFromAPI(
-    @param.query.string('lat') lat: string,
-    @param.query.string('lon') lon: string,
+    @param.query.string('latitude') latitude: string,
+    @param.query.string('longitude') longitude: string,
   ): Promise<any> {
+
     console.log('GET /address');
-    const response = await this.geolocService.getAddressFromAPI(lat, lon);
+    const response = await this.geolocService.getAddressFromAPI(latitude, longitude);
+
+    let cityName;
+    if(response[0].localityInfo.administrative && response[0].localityInfo.administrative.length > 2) {
+      cityName = response[0].localityInfo.administrative[2].isoName;
+    }
+
     return {
-      city: response[0].city || 'N/A',
-      country: response[0].country || 'N/A',
-      postcode: response[0].postal || 'N/A',
-      address: response[0].staddress || 'N/A',
+      city: cityName || response[0].city || 'N/A',
+      country: response[0].countryName || 'N/A',
+      postcode: response[0].postcode || 'N/A',
+      address: response[0].principalSubdivision || 'N/A',
     };
   }
 }

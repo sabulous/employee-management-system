@@ -15,14 +15,16 @@ const config = {
     {
       template: {
         method: 'GET',
-        url: 'https://geocode.xyz/{lat},{lon}',
+        url: 'https://api.bigdatacloud.net/data/reverse-geocode-client',
         query: {
-          json: '1',
+          latitude: '{latitude}',
+          longitude: '{longitude}',
+          localityLanguage: 'en',
         },
         responsePath: '$',
       },
       functions: {
-        getAddressFromAPI: ['lat', 'lon'],
+        getAddressFromAPI: ['latitude', 'longitude'],
       },
     },
   ],
