@@ -4,23 +4,17 @@
 
 ## Setting up the project
 
-1. Make sure you have got [PostgreSQL v12.4](https://formulae.brew.sh/formula/postgresql) database system installed using [Homebrew](https://brew.sh/).
-
-```bash
-brew install postgresql@12
-```
-
-2. This project utilizes Docker and `docker-compose`:
+1. This project utilizes Docker and `docker-compose`.
 
      1. Install [Docker](https://www.docker.com/products/docker-desktop).
 
-     2. Install `docker-compose`:
+     2. Install `docker-compose`.
 
 ```bash
 pip3 install docker-compose
 ```
 
-3. Run the project with the following command. Database tables and initial data will be automatically created.
+2. Run the project with the following command. Database tables and initial data will be automatically created.
 
 ```bash
 docker-compose up --build
@@ -34,10 +28,13 @@ Execute following command to run the tests:
 docker exec employee-management-system_app_1 npm run test
 ```
 
-
+---
 
 ## Endpoints
 
+Noteworthy endpoints are listed below, along with examples. If you want to see the entire set of endpoints check `/explorer`.
+
+---
 
 ### GET /address?latitude={latitude}&longitude={longitude}
 
