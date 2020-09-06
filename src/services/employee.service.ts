@@ -6,13 +6,10 @@ import {EmployeeServiceInterface} from './generic.service.interface';
 @bind({scope: BindingScope.TRANSIENT})
 export class EmployeeService implements EmployeeServiceInterface {
   constructor(
-
     @inject('employee.repository')
     private employeeRepository: EmployeeRepository,
-
     @inject('title-change.repository')
-    private titleChangeRepository: TitleChangeRepository
-
+    private titleChangeRepository: TitleChangeRepository,
   ) {}
 
   async getTitleChangesByEmployeeId(employeeId: number) {

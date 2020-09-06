@@ -37,7 +37,7 @@
     "type": "git"
   },
   "author": "sabulous <sabsah@gmail.com>",
-  "license": "",
+  "license": "UNLICENSED",
   "files": [
     "README.md",
     "dist",

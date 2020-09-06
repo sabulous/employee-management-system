@@ -13,6 +13,7 @@ export class EmployeeRepository extends DefaultCrudRepository<
   typeof Employee.prototype.id,
   EmployeeRelations
 > {
+  [x: string]: any;
   public readonly managerId: BelongsToAccessor<
     Employee,
     typeof Employee.prototype.id
