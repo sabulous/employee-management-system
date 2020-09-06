@@ -87,21 +87,15 @@ export class DepartmentController {
       '200': {
         description: 'Array of Department model instances',
         content: {
-          'application/json': {
-            schema: {
-              type: 'array',
-              items: getModelSchemaRef(Department, {includeRelations: true}),
-            },
-          },
+          'application/json': {},
         },
       },
     },
   })
   async find(
-    @param.filter(Department) filter?: Filter<Department>,
   ): Promise<Department[]> {
     console.log('GET /departments');
-    return this.departmentRepository.find(filter);
+    return this.departmentRepository.find();
   }
 
   @patch('/departments', {
@@ -129,7 +123,6 @@ export class DepartmentController {
 
   @get('/departments/{id}', {
     responses: {
-
       '200': {
         description: 'Department model instance',
         content: {
@@ -140,11 +133,9 @@ export class DepartmentController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Department, {exclude: 'where'})
-    filter?: FilterExcludingWhere<Department>,
   ): Promise<Department> {
     console.log(`GET /departments/${id}`);
-    return this.departmentRepository.findById(id, filter);
+    return this.departmentRepository.findById(id);
   }
 
   @patch('/departments/{id}', {

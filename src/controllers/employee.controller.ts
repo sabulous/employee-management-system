@@ -57,7 +57,7 @@ export class EmployeeController {
     responses: {
       '200': {
         description: 'Employee model count',
-        content: {'application/json': {schema: CountSchema}},
+        content: {'application/json': {}},
       },
     },
   })
@@ -82,10 +82,9 @@ export class EmployeeController {
     },
   })
   async find(
-    @param.filter(Employee) filter?: Filter<Employee>,
   ): Promise<Employee[]> {
     console.log('GET /employees');
-    return this.employeeRepository.find(filter);
+    return this.employeeRepository.find();
   }
 
   @patch('/employees', {
@@ -117,17 +116,13 @@ export class EmployeeController {
       '200': {
         description: 'Employee model instance',
         content: {
-          'application/json': {
-            schema: getModelSchemaRef(Employee, {includeRelations: true}),
-          },
+          'application/json': {},
         },
       },
     },
   })
   async getTitleChangesByEmployeeId(
     @param.path.number('id') id: number,
-    @param.filter(Employee, {exclude: 'where'})
-    filter?: FilterExcludingWhere<Employee>,
     /* eslint-disable-next-line */
   ): Promise<any> {
     console.log(`GET /employees/${id}/history`);
@@ -139,20 +134,16 @@ export class EmployeeController {
       '200': {
         description: 'Employee model instance',
         content: {
-          'application/json': {
-            schema: getModelSchemaRef(Employee, {includeRelations: true}),
-          },
+          'application/json': {},
         },
       },
     },
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Employee, {exclude: 'where'})
-    filter?: FilterExcludingWhere<Employee>,
   ): Promise<Employee> {
     console.log(`GET /employees/${id}`);
-    return this.employeeRepository.findById(id, filter);
+    return this.employeeRepository.findById(id);
   }
 
   @patch('/employees/{id}', {

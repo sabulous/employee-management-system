@@ -29,7 +29,11 @@ export class LocationController {
     responses: {
       '200': {
         description: 'Location model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Location)}},
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Location),
+          },
+        },
       },
     },
   })
@@ -54,7 +58,9 @@ export class LocationController {
     responses: {
       '200': {
         description: 'Location model count',
-        content: {'application/json': {schema: CountSchema}},
+        content: {
+          'application/json': {},
+        },
       },
     },
   })
@@ -68,21 +74,15 @@ export class LocationController {
       '200': {
         description: 'Array of Location model instances',
         content: {
-          'application/json': {
-            schema: {
-              type: 'array',
-              items: getModelSchemaRef(Location, {includeRelations: true}),
-            },
-          },
+          'application/json': {},
         },
       },
     },
   })
   async find(
-    @param.filter(Location) filter?: Filter<Location>,
   ): Promise<Location[]> {
     console.log('GET /locations');
-    return this.locationRepository.find(filter);
+    return this.locationRepository.find();
   }
 
   @patch('/locations', {
@@ -113,20 +113,16 @@ export class LocationController {
       '200': {
         description: 'Location model instance',
         content: {
-          'application/json': {
-            schema: getModelSchemaRef(Location, {includeRelations: true}),
-          },
+          'application/json': {},
         },
       },
     },
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Location, {exclude: 'where'})
-    filter?: FilterExcludingWhere<Location>,
   ): Promise<Location> {
     console.log(`GET /locations/${id}`);
-    return this.locationRepository.findById(id, filter);
+    return this.locationRepository.findById(id);
   }
 
   @patch('/locations/{id}', {

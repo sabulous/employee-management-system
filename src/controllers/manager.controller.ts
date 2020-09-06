@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {Filter, repository} from '@loopback/repository';
-import {get, getModelSchemaRef, param} from '@loopback/rest';
+import {get, param} from '@loopback/rest';
 import {Employee} from '../models';
 import {EmployeeRepository} from '../repositories';
 import {ManagerService} from '../services';
@@ -17,21 +17,15 @@ export class ManagerController {
       '200': {
         description: 'Array of Managers',
         content: {
-          'application/json': {
-            schema: {
-              type: 'array',
-              items: getModelSchemaRef(Employee, {includeRelations: true}),
-            },
-          },
+          'application/json': {},
         },
       },
     },
   })
   async find(
-    @param.filter(Employee) filter?: Filter<Employee>,
   ): Promise<Employee[]> {
     console.log('GET /managers');
-    return (await this.employeeRepository.find(filter)).filter(
+    return (await this.employeeRepository.find()).filter(
       emp => emp.title === 'Manager',
     );
   }

@@ -70,21 +70,15 @@ export class TitleChangeController {
       '200': {
         description: 'Array of TitleChange model instances',
         content: {
-          'application/json': {
-            schema: {
-              type: 'array',
-              items: getModelSchemaRef(TitleChange, {includeRelations: true}),
-            },
-          },
+          'application/json': {},
         },
       },
     },
   })
   async find(
-    @param.filter(TitleChange) filter?: Filter<TitleChange>,
   ): Promise<TitleChange[]> {
     console.log('GET /title-changes');
-    return this.titleChangeRepository.find(filter);
+    return this.titleChangeRepository.find();
   }
 
   @patch('/title-changes', {
@@ -115,20 +109,16 @@ export class TitleChangeController {
       '200': {
         description: 'TitleChange model instance',
         content: {
-          'application/json': {
-            schema: getModelSchemaRef(TitleChange, {includeRelations: true}),
-          },
+          'application/json': {},
         },
       },
     },
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(TitleChange, {exclude: 'where'})
-    filter?: FilterExcludingWhere<TitleChange>,
   ): Promise<TitleChange> {
     console.log(`GET /title-changes/${id}`);
-    return this.titleChangeRepository.findById(id, filter);
+    return this.titleChangeRepository.findById(id);
   }
 
   @patch('/title-changes/{id}', {
