@@ -16,12 +16,12 @@ export class TitleChange extends Entity {
     type: 'date',
     required: true,
   })
-  startDate: string;
+  startdate: string;
 
   @property({
     type: 'date',
   })
-  endDate?: string;
+  enddate?: string;
 
   @property({
     type: 'string',

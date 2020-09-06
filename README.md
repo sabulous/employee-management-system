@@ -6,9 +6,9 @@
 
 1. This project utilizes Docker and `docker-compose`.
 
-     1. Install [Docker](https://www.docker.com/products/docker-desktop).
+   1. Install [Docker](https://www.docker.com/products/docker-desktop).
 
-     2. Install `docker-compose`.
+   2. Install `docker-compose`.
 
 ```bash
 pip3 install docker-compose
@@ -106,16 +106,16 @@ Retrieves title changes (most recent first) of an employee with id `id`.
   "titleChanges": [
     {
       "id": 3,
-      "startDate": "2019-09-06T14:06:51.596Z",
-      "endDate": null,
+      "startdate": "2019-09-06T14:06:51.596Z",
+      "enddate": null,
       "title": "Software Engineer",
       "departmentId": 1,
       "employeeId": 3
     },
     {
       "id": 1,
-      "startDate": "2018-09-06T14:06:51.596Z",
-      "endDate": "2019-09-06T14:06:51.596Z",
+      "startdate": "2018-09-06T14:06:51.596Z",
+      "enddate": "2019-09-06T14:06:51.596Z",
       "title": "Specialist",
       "departmentId": 1,
       "employeeId": 3
@@ -135,6 +135,7 @@ Retrieves list of employees with title `'Manager'` associated with the employees
 ```http
 /hierarchy
 ```
+
 ##### Example Response Body:
 
 ```
@@ -176,6 +177,7 @@ Retrieves detailed list of employees with title `'Manager'`.
 ```http
 /managers
 ```
+
 ##### Example Response Body:
 
 ```
@@ -221,7 +223,7 @@ Retrieves detailed list of employees with title `'Manager'`.
 
 ## Database Schema Diagram
 
-![DB schema diagram](assets/images/DB_diagram.jpeg "Database schema diagram")
+![DB schema diagram](assets/images/DB_diagram.png 'Database schema diagram')
 
 ## Improvements
 
